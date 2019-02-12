@@ -18,24 +18,25 @@ var userSearch = userSearchItem.join('+');
 
 var bitURL = 'https://rest.bandsintown.com/artists/' + userSearch + '/event?app_id=codingbootcamp';
 
-var omdbURL = 'http://wwwomdbapi.com/?t=' + userSearch + '&y=&plot=short&apikey=trilogy';
+var omdbURL = 'http://www.omdbapi.com/?t=' + userSearch + '&y=&plot=short&apikey=trilogy';
 
 //spotify
 
 function searchSpotify() {
 
     var keys = require('./keys.js');
+    console.log(keys);
 
     var spotify = new Spotify(keys.spotify);
 
-    var songQuery = newSearchItem;
+    var songQuery = userSearchItem;
 
-    if (newSearch.length < 1) {
+    if (userSearchItem.length < 1) {
 
         searchSong = 'The Sign Ace of Base';
     }
 
-    spotify.search({ type: 'track', query: searchSong }, function (err, data) {
+    spotify.search({ type: 'track', query: songQuery }, function (err, data) {
         if (err) {
             return console.log('Error Occurred: ' + err);
         }
@@ -66,7 +67,7 @@ function bitSearch() {
 //OMDB
 
 function omdbSearch (){
-    asxios.get(omdbURL).then(
+    axios.get(omdbURL).then(
         function (response) {
             console.log('\n    ' + response.data.Title + '  (' + response.data.Year + ')');
             console.log('\n --------------------Movie Info-----------------------------');
@@ -83,7 +84,7 @@ function omdbSearch (){
 
 //user calls
 
-if (userRequest === "spotify-this-song") {
+if (userRequest === "spotify-this") {
     searchSpotify();
 }
 else if (userRequest === "concert-this") {
@@ -103,7 +104,7 @@ else if (userRequest === "do-what-it-says") {
         var dataArr = data.split('"');
         userRequest = dataArr[0];
         userSearchItem = dataArr[1];
-        spotifySearch();
+        searchSpotify();
     });
 }
 
