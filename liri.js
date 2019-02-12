@@ -32,7 +32,7 @@ function searchSpotify() {
 
     if (userSearchItem.length < 1) {
 
-        searchSong = 'The Sign Ace of Base';
+        songQuery = 'The Sign Ace of Base';
     }
 
     spotify.search({ type: 'track', query: songQuery }, function (err, data) {
@@ -87,7 +87,6 @@ if (userRequest === "spotify-this") {
     searchSpotify();
 }
 else if (userRequest === "concert-this") {
-    console.log(bitURL);
     bitSearch();
 }
 else if (userRequest === "movie-this" && userSearchItem.length > 0) {
