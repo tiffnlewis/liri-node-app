@@ -32,7 +32,7 @@ function searchSpotify() {
 
     if (userSearchItem.length < 1) {
 
-        searchSong = 'The Sign Ace of Base';
+        songQuery = 'The Sign Ace of Base';
     }
 
     spotify.search({ type: 'track', query: songQuery }, function (err, data) {
